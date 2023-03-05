@@ -1,0 +1,96 @@
+\documentclass{article}
+\usepackage[UTF8]{ctex}
+\usepackage{pythonhighlight}
+\usepackage{markdown}
+\usepackage{listings}
+% \lstset{
+%     basicstyle=\tt,
+%     keywordstyle=\color{purple}\bfseries,
+%     identifierstyle=\color{brown!80!black},
+%     commentstyle=\color{gray}
+%     showstringspaces=false,
+%     backgroundcolor=\color[RGB]{245,245,244},
+% }
+\lstset{
+    basicstyle          =   \tt,          % 基本代码风格
+    identifierstyle=\color{brown!80!black},
+    keywordstyle        =   \color{purple}\bfseries,          % 关键字风格
+    commentstyle        =   \rmfamily\itshape,  % 注释的风格，斜体
+    stringstyle         =   \ttfamily,  % 字符串风格
+    flexiblecolumns,                % 别问为什么，加上这个
+    numbers             =   left,   % 行号的位置在左边
+    showspaces          =   false,  % 是否显示空格，显示了有点乱，所以不现实了
+    numberstyle         =   \zihao{-5}\ttfamily,    % 行号的样式，小五号，tt等宽字体
+    showstringspaces    =   false,
+    captionpos          =   t,      % 这段代码的名字所呈现的位置，t指的是top上面
+    frame               =   lrtb,   % 显示边框
+    backgroundcolor=\color[RGB]{245,245,244},
+}
+
+% Language setting
+% Replace `english' with e.g. `spanish' to change the document language
+\usepackage[english]{babel}
+\usepackage{float}
+% Set page size and margins
+% Replace `letterpaper' with `a4paper' for UK/EU standard size
+\usepackage[letterpaper,top=2cm,bottom=2cm,left=3cm,right=3cm,marginparwidth=1.75cm]{geometry}
+
+% Useful packages
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage[colorlinks=true, allcolors=blue]{hyperref}
+
+\title{数逻实验报告Lab6}
+\author{雷远航}
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+    实验项目:七段数码管
+\end{abstract}
+
+\section{操作方法与实验步骤}
+
+\subsection{原理图设计实现显示译码模块MyMC14495}
+\subsubsection{绘制原理图}
+\subsubsection*{根据真值表绘制出七位译码器}
+    
+
+\subsubsection{对生成的原理图进行检验}
+完成Synthesize-XST,Implement Design,Manage Configuration Project(iMPACT)
+最后Create Schematic Symbol,生成逻辑符号图供后序实验使用.
+
+\subsubsection{对原理图进行仿真模拟}
+导入仿真激励代码,并且生成波形图检验
+\subsubsection*{仿真激励代码}
+
+\begin{lstlisting}[language=C]
+   
+    #include <stdio.h>
+
+int main()
+{
+	int i = 0;
+	while(1){
+	printf("%d",i);
+	i++;
+	}
+	return 0;
+}
+
+    
+\end{lstlisting}
+
+
+
+\subsection{用MyMC14495实现数码管显示}
+
+\section{实验结果与分析}
+
+\section{讨论与心得}
+
+\section{Bonous}
+
+\end{document}

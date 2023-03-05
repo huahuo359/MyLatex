@@ -1,0 +1,65 @@
+\documentclass{article}
+\usepackage[UTF8]{ctex}
+\usepackage{pythonhighlight}
+
+% Language setting
+% Replace `english' with e.g. `spanish' to change the document language
+\usepackage[english]{babel}
+\usepackage{float}
+% Set page size and margins
+% Replace `letterpaper' with `a4paper' for UK/EU standard size
+\usepackage[letterpaper,top=2cm,bottom=2cm,left=3cm,right=3cm,marginparwidth=1.75cm]{geometry}
+
+% Useful packages
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage[colorlinks=true, allcolors=blue]{hyperref}
+
+\title{STL allocator + memory pool}
+\author{Lei Yuanhang}
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+Assignment 007 STL allocator + memory pool
+
+
+\end{abstract}
+
+\section*{小组成员:}
+雷远航 
+
+学号:3210105807
+
+\section*{算法描述:}
+在std:allocator的基础上进行改进,采用自己实现的MemoryPool来进行优化,从而使得内存申请的速度可以得到提升.
+算法实现的具体思路如下.
+\subsection*{MemoryPool::pointer MemoryPool::allocate(size\_type alloc\_size)}
+初始状态时首先申请了一块较大的内存,然后通过双向链表对这片内存进行管理,在每次申请的过程中如果链表的head指针(后续对双向链表的管理可以使得head指针能指向尽可能大的内存片段)指向空间的大小
+足够大,则将这份内存块进行分割,被分割的内存块会通过指针串联在一起,重新将空闲的内存块插入到其中,如果内存的大小不够充足那么就向系统中申请一个较大的内存,在一次申请内存中会对内存片段的末尾放一个结束的标志block\_end来便于内存的返还.并且重复上面的操作来获取相应的内存块.
+
+\subsection*{void MemoryPool::deallocate(data\_pointer ptr) }
+对于返还的内存指针,首先将其转化为block*,对前后的内存块进行判断,如果前后的内存块是连续的空间,并且是空闲的状态,那么先将其进行合并然后
+再插入到管理的双向链表中,如果前后没有连续的内存空间,那么就直接将这个内存块插入双向链表中.
+
+\subsection*{void MemoryPool::updatePool() }
+对双向链表进行调整,如果head指针指向空间的大小小于下一个空间的大小,那么head->next\_block会替换为head.
+
+如果head->next\_block的大小小于head的大小,那么把这个指针移到head指针的左边.
+
+通过上述操作对双向链表进行调整,可以确保head指针指向的空间是尽可能大的.
+
+\section*{测试评估:}
+使用了题干中的main.cpp对实现的MemoryPool进行了测试,vector<int>的情况进行了测试,我的测试环境是:MacBook air 
+
+对testsize和picksize进行调整,对相应的情况进行了测试,实现的MemoryPool的运行速度都是更快的,对于实际的运行和测试方式我放在了
+Readme.md中可以进行查看.
+
+
+\section*{C++标准版本:C++11}
+我提供了Makefile和run.sh的执行脚本,可以直接进行编译.
+
+
+\end{document}

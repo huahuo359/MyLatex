@@ -1,0 +1,219 @@
+\documentclass[a4paper, 12pt]{article}
+% 可以选择的类型有：article , report , book ...
+
+% 可以设置标题自动编号的等级
+\setcounter{secnumdepth}{2}
+
+\setcounter{tocdepth}{2}  % 设置目录层次深入到`\subsection`级
+
+\usepackage{sectsty}
+\sectionfont{\centering}  % 可以使标题居中
+
+% 段落进行首行锁进
+% \setlength{\parindent}{2em}
+
+
+%\usepackage[colorlinks=true]{hyperref}  % 为文档中的章节引用自动添加链接
+
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{palatino} 
+
+% \usepackage[T1]{fontenc}
+% \usepackage[utf8]{inputenc}
+\usepackage{palatino} 
+% \sectionfont{\fontfamily{phv}\fontseries{b}\fontsize{11pt}{20pt}\selectfont} %一级标题字体格式设置
+% \subsectionfont{\fontfamily{phv}\fontseries{b}\fontsize{11pt}{20pt}\selectfont} %二级标题字体格式设置
+% \subsubsectionfont{\fontfamily{phv}\fontseries{b}\fontsize{11pt}{20pt}\selectfont} %三级标题字体格式设置
+
+% 使用这个包可以进行中文的插入
+\usepackage{xeCJK}
+
+% 进行页眉、页脚的设置
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\lhead{}
+\chead{}
+\rhead{\bfseries latex-cookbook} %页眉内容
+\lfoot{From: Latex} %页脚内容
+\cfoot{To: Hua Huo } %页脚内容
+\rfoot{\thepage} %在页脚处给出页码
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0.4pt}
+
+
+% 用于图片插入的包
+\usepackage{graphicx}
+
+
+% 插入代码的一些配置
+\usepackage{listings}
+\usepackage{color}
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+\definecolor{backcolour}{rgb}{0.95,0.95,0.92}
+
+\lstdefinestyle{mystyle}{
+    backgroundcolor=\color{backcolour},   
+    commentstyle=\color{codegreen},
+    keywordstyle=\color{magenta},
+    numberstyle=\tiny\color{codegray},
+    stringstyle=\color{codepurple},
+    basicstyle=\ttfamily\footnotesize,
+    breakatwhitespace=false,         
+    breaklines=true,                 
+    captionpos=b,                    
+    keepspaces=true,                 
+    numbers=left,                    
+    numbersep=5pt,                  
+    showspaces=false,                
+    showstringspaces=false,
+    showtabs=false,                  
+    tabsize=2
+}
+
+\lstset{style=mystyle}
+
+
+% 插入伪代码的配置
+
+\usepackage[linesnumbered, boxed]{algorithm2e}
+\usepackage{amsmath, amsfonts}
+
+% 标题、日期、作者信息在前面
+\title{Latex Cookbook}
+\author{Author}
+\date{2023.3.5}
+
+
+\begin{document}
+
+%\tableofcontents
+% 可用于目录的生成
+
+
+\maketitle
+
+
+\begin{abstract}
+This is a Latex Cookbook
+\end{abstract}
+\textbf{Keywords: keyword1, keyword2, keyword3}  % 设置关键词
+
+
+
+\part{Latex Tutorial}
+
+\section{Document Class}
+
+\subsection{Article}
+
+Hello Latexers! This is our first Latex document
+
+% 在标题之下可以使用段落
+\paragraph{PA}
+Hello, LaTeXers! This is our first LaTeX document.
+\subparagraph{Pa1}
+This document is our starting point for learning LaTeX and writing with it. It would not be difficult.
+
+可以写中文
+
+
+\subsection{Text}
+
+
+Produce \textit{italicized} text. \\      % 生成斜体字的文本
+
+Produce \textbf{bold face} text. \\       % 生成粗体字的文本
+
+Produce \textsc{small caps} text. \\      % 生成小型大写字母的文本
+
+Produce \texttt{typewriter font} text. \\ % 生成打字机字体的文本
+
+
+
+Generate \underline{underlined} text. \\     % 生成带下划线的文本（使用\underline命令）
+
+% Generate \uline{underlined} text. \\         % 生成单下划线的文本（使用\uline命令）
+
+% Generate \uuline{double underlined} text. \\ % 生成单下划线的文本
+
+% Generate \uwave{wavy underlined} text. \\   % 生成波浪线的文本
+
+
+\subsection{List}
+
+\begin{itemize}
+
+    \item Item 1 % 条目1
+    \item Item 2 % 条目2
+    
+    \end{itemize}
+    排序列表的使用方法为：
+    \begin{enumerate}
+    
+    \item Item 1 % 条目1
+    \item Item 2 % 条目2
+    
+    \end{enumerate}
+    阐述性列表的使用方法为：
+    \begin{description}
+    
+    \item Item 1 % 条目1
+    \item Item 2 % 条目2
+    
+    \end{description}
+
+
+\subsection{Section}
+
+% 我们可以插入一个文本框
+\fbox{
+    \parbox{0.8\linewidth}{
+    	In \LaTeX, we can use fbox and parbox to put a box around multiple lines. In this case, we set the linewidth as 0.8.
+    }
+}
+
+
+
+
+\subsection{Insert Picture}
+
+
+
+\begin{figure}[htbp]
+%\centering
+    \includegraphics[width = 0.5\textwidth]{1.png}
+    \caption{A beautiful butterfly.}
+
+\end{figure}
+
+
+
+\subsection{Code}
+
+\begin{lstlisting}[language = python]
+    import numpy as np
+    
+    x = np.random.rand(4)
+    print(x)
+    \end{lstlisting}
+   
+
+    This is a simple example:
+
+    \IncMargin{1em}
+    \begin{algorithm}
+    \SetKwInOut{Input}{Input}
+    \SetKwInOut{Output}{Output}
+    \caption{Inner product of vectors}
+    \Input{$\boldsymbol{x},\boldsymbol{y}\in\mathbb{R}^{n}$}
+    \Output{$c$}
+    $c=0$\;
+    \For{$i=1$ \KwTo $n$}{
+    $c=c+x_iy_i$\;
+    }
+    \end{algorithm}
+
+\end{document}
